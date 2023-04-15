@@ -1,0 +1,74 @@
+///////////////////////////////////////////////////////////////////////////////
+// File: UsesWinsock.cpp
+///////////////////////////////////////////////////////////////////////////////
+//
+// Copyright 2002 JetByte Limited.
+//
+// This software is provided "as is" without a warranty of any kind. All
+// express or implied conditions, representations and warranties, including
+// any implied warranty of merchantability, fitness for a particular purpose
+// or non-infringement, are hereby excluded. JetByte Limited and its licensors
+// shall not be liable for any damages suffered by licensee as a result of
+// using the software. In no event will JetByte Limited be liable for any
+// lost revenue, profit or data, or for direct, indirect, special,
+// consequential, incidental or punitive damages, however caused and regardless
+// of the theory of liability, arising out of the use of or inability to use
+// software, even if JetByte Limited has been advised of the possibility of
+// such damages.
+//
+///////////////////////////////////////////////////////////////////////////////
+
+//#include "JetByteTools\Admin\Admin.h"
+#include "stdafx.h"
+#include "UsesWinsock.h"
+
+//#include "JetByteTools\Win32Tools\Win32Exception.h"
+
+#pragma hdrstop
+
+///////////////////////////////////////////////////////////////////////////////
+// Using directives
+///////////////////////////////////////////////////////////////////////////////
+
+//using JetByteTools::Win32::CWin32Exception;
+
+///////////////////////////////////////////////////////////////////////////////
+// Namespace: JetByteTools::Socket
+///////////////////////////////////////////////////////////////////////////////
+
+namespace JetByteTools {
+namespace Socket {
+
+///////////////////////////////////////////////////////////////////////////////
+// CUsesWinsock
+///////////////////////////////////////////////////////////////////////////////
+
+CUsesWinsock::CUsesWinsock()
+{
+   WORD wVersionRequested = 0x202;
+
+   const DWORD result = ::WSAStartup(wVersionRequested, &m_data);
+
+   if (0 != result)
+   {
+      "TODO";//throw CWin32Exception(_T("CUsesWinsock::CUsesWinsock()"), result);
+   }
+}
+
+CUsesWinsock::~CUsesWinsock()
+{
+   WSACleanup();
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// Namespace: JetByteTools::Socket
+///////////////////////////////////////////////////////////////////////////////
+
+} // End of namespace Socket
+} // End of namespace JetByteTools
+
+
+///////////////////////////////////////////////////////////////////////////////
+// End of file: UsesWinsock.cpp
+///////////////////////////////////////////////////////////////////////////////
+
